@@ -59,11 +59,10 @@ router.get('/new', (req, res) => {
 /////////////////////
 //Show Routes
 /////////////////////
-router.get('/index/:indexOf', function(req, res){
-        Logs.findById(req.params.indexOf, (err, foundData)=>{
-            res.render('show.ejs', {
-                data:foundData,
-                tabTitle: 'Show'
+router.get('/view/:indexOf', function(req, res){
+        Events.findById(req.params.indexOf, (err, foundData)=>{
+            res.render('./events/show.ejs', {
+                data:foundData
             });
         });
     });
@@ -71,10 +70,16 @@ router.get('/index/:indexOf', function(req, res){
 /////////////////////
 //Delete Route
 /////////////////////
-router.delete('/index/:indexOf', (req, res) => {
+router.get('/delete/:indexOf', (req, res) => {
+    if(req.session){
+    if (req.session.login === true){
     Events.findByIdAndRemove(req.params.indexOf, (err, data)=>{
-        res.redirect('/index');
-    });
+        res.redirect('/events/');
+    });}
+    else {res.redirect('/events/error')}}
+        else{
+            res.redirect('/events/error');
+        }
 });
 
 /////////////////////

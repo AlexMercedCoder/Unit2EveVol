@@ -19,12 +19,14 @@
        <p><%=event.location%></p>
        <p><%=event.date%></p>
        <ul class="card-actions">
+         <li><a href="/events/view/<%=event.id%>" class="button-primary evbtn">View</a></li>
          <li><a href="/events/edit/<%=event.id%>" class="button-primary evbtn">Edit</a></li>
-         <li><a href="event/delete/<%=event.id%>" class="button-primary evbtn">Delete</a></li>
+         <li><a href="/events/delete/<%=event.id%>" class="button-primary evbtn">Delete</a></li>
        </ul>
         </div>
             <%}%>
             </div>
+            *the view pages are shareable with the public!
         </div>
 
             <% include ../partials/footer.ejs%>
