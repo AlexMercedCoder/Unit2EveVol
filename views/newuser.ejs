@@ -5,11 +5,9 @@
     </head>
     <body>
 
+<% include ./partials/header.ejs%>
 
-        <header>
-            <% include ./partials/header.ejs%>
-        </header>
-        
+        <div class="welcome">
         <h1>New User</h1>
         <!--  NOTE: action will be the route, method will be the HTTP verb-->
         <form action="/new" method="POST">
@@ -17,5 +15,7 @@
             Password: <input type="password" name="password" /><br/>
             <input type="submit" name="" value="Create User"/>
         </form>
+    </div>
+        <% include ./partials/footer.ejs%>
     </body>
 </html>

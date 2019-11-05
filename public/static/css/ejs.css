@@ -1,0 +1,7 @@
+.mobile-menu {display: none; position: absolute; top: 30%; left: 30%; z-index: 0;}
+
+.welcome, .cont { width: 90%; padding: 20px; margin: 10px auto;}
+
+.nav-logo {font-size: 130%;}
+
+.container, footer {width: 100vw;}

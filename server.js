@@ -1,5 +1,6 @@
 const express = require('express')
 const app = express()
+require('dotenv').config();
 const router = express.Router();
 const port = process.env.PORT || 5000
 const methodOverride = require('method-override')
@@ -9,7 +10,7 @@ const host = process.env.CLUSTER
 const dbupdateobject = { useNewUrlParser:true, useUnifiedTopology:true, useFindAndModify:false}
 const bcrypt = require('bcrypt');
 const session = require('express-session');
-require('dotenv').config();
+
 
 //////////////////////
 //CONTROLLERS
@@ -35,7 +36,7 @@ db.on( 'open' , ()=>{
 });
 
 //Schema
-// const DATA = require('./models/schema.js');
+const Users = require('./models/users.js');
 
 /////////////////////////
 //RUNTIME DATA
@@ -60,40 +61,52 @@ app.listen(port, () => console.log(`Hello Alex I'm listening on ${port}!`))
 //user Route
 app.get('/', (req, res) => res.render('main.ejs'))
 
+//create new user page
 app.get('/new', (req, res) => res.render('newuser.ejs'))
 
+//login or signup error page
+app.get('/error', (req, res) => res.render('error.ejs'))
+
+//posting a new user
 app.post('/new', (req, res)=>{
     console.log(req.body)
     req.body.password = bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(10));
     Users.create(req.body, (error, createdUser)=>{
         console.log(createdUser)
-        res.redirect('/');
+        if (createdUser === undefined){
+            res.redirect('/error')
+        }else{
+        res.redirect('/');}
     });
 });
 
+//route to login page
 app.get('/login', (req, res) => res.render('login.ejs'))
 
+//logout button
 app.get('/logout', (req, res) => {
     req.session.destroy((err)=>{
        if(err){
-           res.redirect('/index')
+           res.redirect('/')
        } else {
            res.redirect('/')
        }
    });})
 
+//confirm login set session data
 app.post('/login', (req, res)=>{
     Users.findOne({username: req.body.username}, (error, user)=>{
         if (user === null){
-            res.redirect('/');
+            res.redirect('/error');
         }else{
         console.log(user);
         if (bcrypt.compareSync(req.body.password, user.password)){
             req.session.login = true;
             req.session.user = req.body.username;
             console.log('correct password');
-            res.redirect('/index');} else{console.log('wrong password')
-                res.redirect('/')};}
+            console.log(req.session.user);
+            res.redirect('/');} else{console.log('wrong password')
+                res.redirect('/error')};}
     });
 });
 

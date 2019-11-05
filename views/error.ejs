@@ -8,14 +8,14 @@
 
             <% include ./partials/header.ejs%>
         <div class="welcome">
-        <h1>login</h1>
+        <h1>login/signup Error</h1>
         <!--  NOTE: action will be the route, method will be the HTTP verb-->
-        <form action="/login" method="POST">
-            Username: <input type="text" name="username" /><br/>
-            Password: <input type="password" name="password" /><br/>
-            <input type="submit" name="" value="Login"/>
-        </form>
-    </div>
+        <p>If you are seeing this page you've had a login problem which can be because either...</p>
+        <ul>
+            <li>Wrong Username</li>
+            <li>Wrong Password</li>
+            <li>Attempted Sign-Up with Already use username</li>
+        </div>
             <% include ./partials/footer.ejs%>
     </body>
 </html>

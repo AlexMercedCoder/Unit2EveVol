@@ -5,15 +5,14 @@
     </head>
     <body>
 
+        <% include ./partials/header.ejs%>
 
-        <header>
-            <% include ./partials/header.ejs%>
-        </header>
-        <div class="welcome">
-        <h1>Welcome to EveVol</h1>
-        <h2>Please Login or Signup<h2>
-        <p> EveVol is an application for keeping track of which of your volunteers are to be scheduled for upcoming events. Create lists of volunteers and events and be able to create a public page of your event with assigned volunteers you can share with you team so they know who needs to be where!</p>
-        </div>
+            <div class="welcome">
+            <h1>Welcome to EveVol</h1>
+            <h4>Please Login or Signup</h4>
+            <p> EveVol is an application for keeping track of which of your volunteers are to be scheduled for upcoming events. Create lists of volunteers and events and be able to create a public page of your event with assigned volunteers you can share with you team so they know who needs to be where!</p>
+            </div>
 
+            <% include ./partials/footer.ejs%>
     </body>
 </html>
