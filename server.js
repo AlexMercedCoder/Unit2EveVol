@@ -15,7 +15,8 @@ const session = require('express-session');
 //////////////////////
 //CONTROLLERS
 ///////////////////
-// const Controller = require('./controllers/control.js');
+const eventControl = require('./controllers/eventController.js');
+// const volControl = require('./controllers/volController.js');
 
 /////////////////////
 //DATABASE
@@ -45,8 +46,16 @@ const Users = require('./models/users.js');
 /////////////////////
 //MIDDLEWARE
 /////////////////////
+app.use(session({
+	  secret: process.env.SESSION,
+	  resave: false,
+	  saveUninitialized: false
+}));
 app.use(express.urlencoded({extended:false}));
 app.use(methodOverride('_method'));
+app.use('/events', eventControl);
+// app.use('/vol', volControl);
+
 
 
 /////////////////////
@@ -95,6 +104,7 @@ app.get('/logout', (req, res) => {
 
 //confirm login set session data
 app.post('/login', (req, res)=>{
+    console.log(req.session)
     Users.findOne({username: req.body.username}, (error, user)=>{
         if (user === null){
             res.redirect('/error');
@@ -104,7 +114,7 @@ app.post('/login', (req, res)=>{
             req.session.login = true;
             req.session.user = req.body.username;
             console.log('correct password');
-            console.log(req.session.user);
+            console.log(req.session);
             res.redirect('/');} else{console.log('wrong password')
                 res.redirect('/error')};}
     });

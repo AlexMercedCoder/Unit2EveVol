@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+<% include ../partials/head.ejs %>
+    </head>
+    <body>
+
+        <% include ../partials/header.ejs%>
+
+            <div class="welcome">
+            <h1>Events</h1>
+            <div><button class="button-primary button-round button-shadow">Create New Event</button></div>
+
+
+            <div class="cardcont">
+            <% for (event of data){%>
+                <div class="card">
+       <h3 class="card-title"><%=event.title%></h3>
+       <p><%=event.location%></p>
+       <p><%=event.date%></p>
+       <ul class="card-actions">
+         <li><a href="/events/edit/<%=event.id%>" class="button-primary">Edit</a></li>
+         <li><a href="event/delete/<%=event.id%>" class="button-primary">Delete</a></li>
+       </ul>
+        </div>
+            <%}%>
+            </div>
+        </div>
+
+            <% include ../partials/footer.ejs%>
+    </body>
+</html>

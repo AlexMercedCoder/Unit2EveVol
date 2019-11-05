@@ -5,3 +5,5 @@
 .nav-logo {font-size: 130%;}
 
 .container, footer {width: 100vw;}
+
+.nav-logo img{height: 60px; display: block;}
