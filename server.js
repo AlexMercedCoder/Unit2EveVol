@@ -16,7 +16,7 @@ const session = require('express-session');
 //CONTROLLERS
 ///////////////////
 const eventControl = require('./controllers/eventController.js');
-// const volControl = require('./controllers/volController.js');
+const volControl = require('./controllers/volController.js');
 
 /////////////////////
 //DATABASE
