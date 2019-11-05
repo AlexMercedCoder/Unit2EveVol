@@ -13,7 +13,8 @@ router.get('/', (req, res) => {
     if(req.session){
         console.log(req.session);
     if (req.session.login === true){
-        Events.find({user: req.session.user}, (error, data)=>{
+        Events.find({username: req.session.user}, (error, data)=>{
+        console.log(data);
         res.render('./events/index.ejs', {
             data: data,
         });
@@ -30,27 +31,28 @@ router.get('/error', (req, res) => res.render('./events/error.ejs'))
 /////////////////////
 //Create Routes
 /////////////////////
-router.post('/index/', (req, res) => {
-    req.body.user = req.session.user;
-    if(req.body.shipIsBroken === 'on'){ //if checked, req.body.readyToEat is set to 'on'
-        req.body.shipIsBroken = true;
-    } else { //if not checked, req.body.readyToEat is undefined
-        req.body.shipIsBroken = false;
-    }
-    Logs.create(req.body, (error, created)=>{
-        res.redirect('/index');
-    });
-});
-
-router.get('/index/new', (req, res) => {
+router.post('/new', (req, res) => {
     if(req.session){
     if (req.session.login === true){
-    res.render('new.ejs',
-        {
-            tabTitle: 'Create'
-        });} else {res.redirect('/login')}}
+    req.body.username = req.session.user;
+    console.log(req.body)
+    Events.create(req.body, (error, created)=>{
+        console.log(created);
+        res.redirect('/events/');
+    });}
+    else {res.redirect('/events/error')}}
         else{
-            res.redirect('/');
+            res.redirect('/events/error');
+        }
+});
+
+router.get('/new', (req, res) => {
+    if(req.session){
+    if (req.session.login === true){
+    res.render('./events/new.ejs');}
+    else {res.redirect('/events/error')}}
+        else{
+            res.redirect('/events/error');
         }
 });
 
@@ -70,7 +72,7 @@ router.get('/index/:indexOf', function(req, res){
 //Delete Route
 /////////////////////
 router.delete('/index/:indexOf', (req, res) => {
-    Logs.findByIdAndRemove(req.params.indexOf, (err, data)=>{
+    Events.findByIdAndRemove(req.params.indexOf, (err, data)=>{
         res.redirect('/index');
     });
 });
@@ -78,26 +80,20 @@ router.delete('/index/:indexOf', (req, res) => {
 /////////////////////
 //Update Routes
 /////////////////////
-router.get('/index/:indexOf/edit', (req, res)=>{
-    Logs.findById(req.params.indexOf, (err, foundData)=>{
+router.get('/edit/:indexof', (req, res)=>{
+    Events.findById(req.params.indexOf, (err, foundData)=>{
         res.render(
     		'edit.ejs',
     		{
-    			data: foundData,
-                tabTitle: 'edit'
+    			data: foundData
 
     		}
     	);
     });
 });
 
-router.put('/index/:indexOf', (req, res) => {
-    if(req.body.shipIsBroken === 'on'){ //if checked, req.body.readyToEat is set to 'on'
-        req.body.shipIsBroken = true;
-    } else { //if not checked, req.body.readyToEat is undefined
-        req.body.shipIsBroken = false;
-    }
-    Logs.findByIdAndUpdate(req.params.indexOf, req.body, {new:true}, (err, updatedModel)=>{
+router.put('/edit/:indexOf', (req, res) => {
+    Events.findByIdAndUpdate(req.params.indexOf, req.body, {new:true}, (err, updatedModel)=>{
         res.redirect('/index');
     });
 });

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+<% include ../partials/head.ejs %>
+    </head>
+    <body>
+
+        <% include ../partials/header.ejs%>
+
+            <div class="welcome">
+            <h1>New Event</h1>
+
+            <form action="/events/new" method="POST">
+
+                <input type="text" placeholder="Title" name="title" /><br/>
+                <input type="text" placeholder="Date" name="date" /><br/>
+                <input type="text" placeholder="Location" name="location" /><br/>
+                <textarea placeholder="Description" name="description"></textarea>
+
+                <input type="submit" name="" value="Create Event"/>
+
+            </form>
+
+
+        </div>
+
+            <% include ../partials/footer.ejs%>
+    </body>
+</html>
+
+
+<!-- username:  String,
+title:  String,
+date: String,
+description: String,
+location: String,
+volunteers: Array -->
