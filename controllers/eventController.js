@@ -80,20 +80,35 @@ router.delete('/index/:indexOf', (req, res) => {
 /////////////////////
 //Update Routes
 /////////////////////
-router.get('/edit/:indexof', (req, res)=>{
+router.get('/edit/:indexOf', (req, res)=>{
+    if(req.session){
+    if (req.session.login === true){
     Events.findById(req.params.indexOf, (err, foundData)=>{
+        console.log(foundData, err)
         res.render(
-    		'edit.ejs',
+    		'./events/edit.ejs',
     		{
     			data: foundData
 
     		}
     	);
-    });
+    });}
+    else {res.redirect('/events/error')}}
+        else{
+            res.redirect('/events/error');
+        }
 });
 
 router.put('/edit/:indexOf', (req, res) => {
+    if(req.session){
+    if (req.session.login === true){
+    req.body.username = req.session.user;
+    console.log(req.body)
     Events.findByIdAndUpdate(req.params.indexOf, req.body, {new:true}, (err, updatedModel)=>{
-        res.redirect('/index');
-    });
+        res.redirect('/events/');
+    });}
+    else {res.redirect('/events/error')}}
+        else{
+            res.redirect('/events/error');
+        }
 });

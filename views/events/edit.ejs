@@ -8,16 +8,16 @@
         <% include ../partials/header.ejs%>
 
             <div class="welcome">
-            <h1>New Event</h1>
+            <h1>Edit Event</h1>
 
-            <form action="/events/new" method="POST">
+            <form action="/events/edit/<%=data.id%>?_method=PUT" method="POST">
 
-                <input type="text" placeholder="Title" name="title" /><br/>
-                <input type="text" placeholder="Date" name="date" /><br/>
-                <input type="text" placeholder="Location" name="location" /><br/>
-                <textarea placeholder="Description" name="description"></textarea>
+                <input type="text" value="<%=data.title%>" placeholder="Title" name="title" /><br/>
+                <input type="text" value="<%=data.date%>" placeholder="Date" name="date" /><br/>
+                <input type="text" value="<%=data.location%>" placeholder="Location" name="location" /><br/>
+                <textarea placeholder="Description" name="description">value="<%=data.description%>"</textarea>
 
-                <input type="submit" name="" value="Create Event"/>
+                <input type="submit" name="" value="Edit Event"/>
 
             </form>
 
