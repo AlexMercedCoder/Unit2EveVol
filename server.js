@@ -7,7 +7,7 @@ const methodOverride = require('method-override')
 const mongoose = require('mongoose');
 const db = mongoose.connection;
 const host = process.env.CLUSTER
-const dbupdateobject = { useNewUrlParser:true, useUnifiedTopology:true, useFindAndModify:false}
+const dbupdateobject = { useNewUrlParser:true, useUnifiedTopology:true, useFindAndModify:false , useCreateIndex: true}
 const bcrypt = require('bcrypt');
 const session = require('express-session');
 
@@ -54,7 +54,7 @@ app.use(session({
 app.use(express.urlencoded({extended:false}));
 app.use(methodOverride('_method'));
 app.use('/events', eventControl);
-// app.use('/vol', volControl);
+app.use('/vol', volControl);
 
 
 

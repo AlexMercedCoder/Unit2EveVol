@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+<% include ../partials/head.ejs %>
+    </head>
+    <body>
+
+        <% include ../partials/header.ejs%>
+
+            <div class="welcome">
+            <h1>New Volunteer</h1>
+
+            <form action="/vol/new" method="POST">
+
+                <input type="text" placeholder="Name" name="name" /><br/>
+                <input type="text" placeholder="Age" name="age" /><br/>
+                <input type="text" placeholder="Phone" name="phone" /><br/>
+                <input type="text" placeholder="Email" name="email" /><br/>
+                <input type="text" placeholder="Skills" name="skills" /><br/>
+                <textarea placeholder="Notes" name="notes"></textarea>
+
+                <input type="submit" name="" value="Add Volunteer"/>
+
+            </form>
+
+
+        </div>
+
+            <% include ../partials/footer.ejs%>
+    </body>
+</html>
+
+
+<!-- username:  String,
+name:  String,
+age: String,
+phone: String,
+email: String,
+skills: String,
+notes: String -->

@@ -6,7 +6,8 @@ const volSchema = new mongoose.Schema({
     age: String,
     phone: String,
     email: String,
-    skills: String
+    skills: String,
+    notes: String
 
 });
 

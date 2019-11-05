@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head>
+<% include ../partials/head.ejs %>
+    </head>
+    <body>
+
+        <% include ../partials/header.ejs%>
+
+            <div class="welcome">
+            <h1>Volunteers</h1>
+            <div><a href="/vol/new" class="button-primary button-round button-shadow evbtn">Add Volunteer</a></div>
+
+
+            <div class="cardcont">
+            <% for (vol of data){%>
+                <div class="card">
+       <h3 class="card-title"><%=vol.name%></h3>
+       <p><%=vol.phone%></p>
+       <p><%=vol.email%></p>
+       <ul class="card-actions">
+         <li><a href="/vol/view/<%=vol.id%>" class="button-primary evbtn">View</a></li>
+         <li><a href="/vol/edit/<%=vol.id%>" class="button-primary evbtn">Edit</a></li>
+         <li><a href="/vol/delete/<%=vol.id%>" class="button-primary evbtn">Delete</a></li>
+       </ul>
+        </div>
+            <%}%>
+            </div>
+            *the view pages are shareable with the public!
+        </div>
+
+            <% include ../partials/footer.ejs%>
+    </body>
+</html>
