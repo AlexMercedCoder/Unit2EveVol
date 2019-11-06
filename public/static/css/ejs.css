@@ -13,7 +13,7 @@ h1 {
   text-decoration-color: mediumseagreen;
 }
 
-.evbtn {padding:5px;}
+.evbtn {padding:5px; margin: 6px;}
 
 .cardcont {display: flex; flex-wrap: wrap; justify-content: space-between;}
 
@@ -21,4 +21,12 @@ h1 {
 
 .show {width: 80%; min-height: 400px; margin: auto; border: 3px solid mediumseagreen; border-radius: 8px; padding: 8px;}
 
+.show span {font-weight: 900;}
+
 .desc {background-color: gold; color: black; margin: 10px auto; padding: 8px;}
+
+.card-actions {flex-wrap: wrap; justify-content: space-around;}
+
+.button-primary {margin: 5px;}
+
+.center {width: 100%; display: flex; justify-content: center;}

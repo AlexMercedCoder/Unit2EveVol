@@ -18,11 +18,15 @@
        <h3 class="card-title"><%=event.title%></h3>
        <p><%=event.location%></p>
        <p><%=event.date%></p>
+       <p><%=event.volunteers%></p>
        <ul class="card-actions">
          <li><a href="/events/view/<%=event.id%>" class="button-primary evbtn">View</a></li>
          <li><a href="/events/edit/<%=event.id%>" class="button-primary evbtn">Edit</a></li>
          <li><a href="/events/delete/<%=event.id%>" class="button-primary evbtn">Delete</a></li>
        </ul>
+       <div class="center">
+        <a href="/vol/assign/<%=event.id%>" class="button-primary evbtn">Assign Volunteers</a>
+        </div>
         </div>
             <%}%>
             </div>
