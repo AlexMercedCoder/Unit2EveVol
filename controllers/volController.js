@@ -61,11 +61,17 @@ router.get('/new', (req, res) => {
 //Show Routes
 /////////////////////
 router.get('/view/:indexOf', function(req, res){
+    if(req.session){
+    if (req.session.login === true){
         Volunteers.findById(req.params.indexOf, (err, foundData)=>{
             res.render('./vol/show.ejs', {
                 data:foundData
             });
-        });
+        });}
+        else {res.redirect('/vol/error')}}
+            else{
+                res.redirect('/vol/error');
+            }
     });
 
 /////////////////////

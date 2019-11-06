@@ -60,11 +60,17 @@ router.get('/new', (req, res) => {
 //Show Routes
 /////////////////////
 router.get('/view/:indexOf', function(req, res){
+    if(req.session){
+    if (req.session.login === true){
         Notes.findById(req.params.indexOf, (err, foundData)=>{
             res.render('./notes/show.ejs', {
                 data:foundData
             });
-        });
+        });}
+        else {res.redirect('/notes/error')}}
+            else{
+                res.redirect('/notes/error');
+            }
     });
 
 /////////////////////
