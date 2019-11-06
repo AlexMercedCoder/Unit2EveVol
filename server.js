@@ -17,6 +17,7 @@ const session = require('express-session');
 ///////////////////
 const eventControl = require('./controllers/eventController.js');
 const volControl = require('./controllers/volController.js');
+const notesControl = require('./controllers/notesController.js');
 
 /////////////////////
 //DATABASE
@@ -55,6 +56,7 @@ app.use(express.urlencoded({extended:false}));
 app.use(methodOverride('_method'));
 app.use('/events', eventControl);
 app.use('/vol', volControl);
+app.use('/notes', notesControl);
 
 
 
@@ -68,10 +70,22 @@ app.listen(port, () => console.log(`Hello Alex I'm listening on ${port}!`))
 //User Route
 /////////////////////
 //user Route
-app.get('/', (req, res) => res.render('main.ejs'))
+app.get('/', (req, res) => {
+    if(req.session){
+        console.log(req.session);
+    if (req.session.login === true){
+        res.render('welcome.ejs')}
+    else{
+    res.render('main.ejs')}}})
 
 //create new user page
-app.get('/new', (req, res) => res.render('newuser.ejs'))
+app.get('/new', (req, res) => {
+    if(req.session){
+        console.log(req.session);
+    if (req.session.login === true){
+        res.render('welcome.ejs')}
+    else{
+    res.render('newuser.ejs')}}})
 
 //login or signup error page
 app.get('/error', (req, res) => res.render('error.ejs'))
@@ -90,7 +104,13 @@ app.post('/new', (req, res)=>{
 });
 
 //route to login page
-app.get('/login', (req, res) => res.render('login.ejs'))
+app.get('/login', (req, res) => {
+    if(req.session){
+        console.log(req.session);
+    if (req.session.login === true){
+        res.render('welcome.ejs')}
+    else{
+    res.render('login.ejs')}}})
 
 //logout button
 app.get('/logout', (req, res) => {

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+<% include ../partials/head.ejs %>
+    </head>
+    <body>
+
+        <% include ../partials/header.ejs%>
+
+            <div class="welcome">
+            <h1>Notes</h1>
+            <div><a href="/notes/new" class="button-primary button-round button-shadow evbtn">Create Note</a></div>
+
+
+            <div class="cardcont">
+            <% for (notes of data){%>
+                <div class="card">
+       <h3 class="card-title"><%=notes.title%></h3>
+       <p><%=notes.notes%></p>
+       <ul class="card-actions">
+         <li><a href="/notes/view/<%=notes.id%>" class="button-primary evbtn">View</a></li>
+         <li><a href="/notes/edit/<%=notes.id%>" class="button-primary evbtn">Edit</a></li>
+         <li><a href="/notes/delete/<%=notes.id%>" class="button-primary evbtn">Delete</a></li>
+       </ul>
+        </div>
+            <%}%>
+            </div>
+        </div>
+
+            <% include ../partials/footer.ejs%>
+    </body>
+</html>

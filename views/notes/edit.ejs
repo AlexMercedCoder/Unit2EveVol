@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+<% include ../partials/head.ejs %>
+    </head>
+    <body>
+
+        <% include ../partials/header.ejs%>
+
+            <div class="welcome">
+            <h1>Edit Note</h1>
+
+            <form action="/notes/edit/<%=data.id%>?_method=PUT" method="POST">
+
+                <input type="text" placeholder="Title" name="title" value="<%=data.title%>" /><br/>
+                <textarea placeholder="notes" name="notes"><%=data.notes%></textarea>
+
+                <input type="submit" name="" value="Create Note"/>
+
+            </form>
+
+
+        </div>
+
+            <% include ../partials/footer.ejs%>
+    </body>
+</html>
+
+
+<!-- username:  String,
+title:  String,
+date: String,
+description: String,
+location: String,
+volunteers: Array -->
