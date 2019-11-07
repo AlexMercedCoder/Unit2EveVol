@@ -99,7 +99,7 @@ app.post('/new', (req, res)=>{
         if (createdUser === undefined){
             res.redirect('/error')
         }else{
-        res.redirect('/');}
+        res.render('success.ejs');}
     });
 });
 
