@@ -19,9 +19,27 @@ A full stack CRUD app for keeping track of events and volunteers staffed at even
 - Express sessions
 - Bcrypt
 
+## User Story
+
+As user I can track events I'm planning along with volunteers and have a publicly shareable page that I can share with event details and assigned volunteers.
+
+As a User I can takes notes which I can refer to later to assist in event planning.
+
 ## Overview of Projects
 
-Used the same MVC CRUD design patterns we used early on in class before we started separating out our controllers. Models and Views are separated out into a separate folders.
+Models:
+
+Users - Everyone can create a user account and login and have data of their own.
+
+Events - Keep track of events and assign volunteers to them. The show page for events is the only publicly accessible one.
+
+Volunteers - Add volunteers to your roster so you can keep track of contact info and assign them to events.
+
+Notes - Keep track of notes.
+
+Views:
+
+Events, Volunteers and Notes can all be created, edited and deleted.
 
 ## Other Comments
 
