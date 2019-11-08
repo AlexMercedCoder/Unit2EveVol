@@ -24,6 +24,18 @@ router.get('/', (req, res) => {
     }
 });
 
+
+//////////////////////////////
+//API Endpoint
+//////////////////////////////
+router.get('/api/:user', (req, res) => {
+        Events.find({username: req.params.user}, (error, data)=>{
+        console.log(data);
+        res.send(data);
+    });
+});
+
+
 //login or signup error page
 router.get('/error', (req, res) => res.render('./events/error.ejs'))
 
