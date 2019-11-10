@@ -38,3 +38,20 @@ img {max-width: 100%;}
 .footer-text {max-width: 100%; width: 80%;}
 
 .welcome iframe {width: 100%; max-width: 560px;}
+
+.welcome iframe:hover {animation: flick .75s infinite}
+
+@keyframes flick {
+
+    0% {border: 1px solid black}
+
+    25% {border: 2px solid mediumseagreen}
+
+    50% {border: 3px solid black}
+
+    75% {border: 2px solid gold}
+
+    100% {border: 1px solid black}
+
+
+}
