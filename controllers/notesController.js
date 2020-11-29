@@ -11,10 +11,8 @@ const Notes = require('../models/notes.js');
 /////////////////////
 router.get('/', (req, res) => {
     if(req.session){
-        console.log(req.session);
     if (req.session.login === true){
         Notes.find({username: req.session.user}, (error, data)=>{
-        console.log(data);
         res.render('./notes/index.ejs', {
             data: data,
         });
@@ -35,9 +33,7 @@ router.post('/new', (req, res) => {
     if(req.session){
     if (req.session.login === true){
     req.body.username = req.session.user;
-    console.log(req.body)
     Notes.create(req.body, (error, created)=>{
-        console.log(created);
         res.redirect('/notes/');
     });}
     else {res.redirect('/notes/error')}}
@@ -95,7 +91,6 @@ router.get('/edit/:indexOf', (req, res)=>{
     if(req.session){
     if (req.session.login === true){
     Notes.findById(req.params.indexOf, (err, foundData)=>{
-        console.log(foundData, err)
         res.render(
     		'./notes/edit.ejs',
     		{
@@ -114,7 +109,6 @@ router.put('/edit/:indexOf', (req, res) => {
     if(req.session){
     if (req.session.login === true){
     req.body.username = req.session.user;
-    console.log(req.body)
     Notes.findByIdAndUpdate(req.params.indexOf, req.body, {new:true}, (err, updatedModel)=>{
         res.redirect('/notes/');
     });}

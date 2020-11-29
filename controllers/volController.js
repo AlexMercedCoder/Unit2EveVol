@@ -12,10 +12,8 @@ const Events = require('../models/events.js');
 /////////////////////
 router.get('/', (req, res) => {
     if(req.session){
-        console.log(req.session);
     if (req.session.login === true){
         Volunteers.find({username: req.session.user}, (error, data)=>{
-        console.log(data);
         res.render('./vol/index.ejs', {
             data: data,
         });
@@ -36,9 +34,7 @@ router.post('/new', (req, res) => {
     if(req.session){
     if (req.session.login === true){
     req.body.username = req.session.user;
-    console.log(req.body)
     Volunteers.create(req.body, (error, created)=>{
-        console.log(created);
         res.redirect('/vol/');
     });}
     else {res.redirect('/vol/error')}}
@@ -96,7 +92,6 @@ router.get('/edit/:indexOf', (req, res)=>{
     if(req.session){
     if (req.session.login === true){
     Volunteers.findById(req.params.indexOf, (err, foundData)=>{
-        console.log(foundData, err)
         res.render(
     		'./vol/edit.ejs',
     		{
@@ -115,7 +110,6 @@ router.put('/edit/:indexOf', (req, res) => {
     if(req.session){
     if (req.session.login === true){
     req.body.username = req.session.user;
-    console.log(req.body)
     Volunteers.findByIdAndUpdate(req.params.indexOf, req.body, {new:true}, (err, updatedModel)=>{
         res.redirect('/vol/');
     });}
@@ -131,10 +125,8 @@ router.put('/edit/:indexOf', (req, res) => {
 
 router.get('/assign/:event', (req, res) => {
     if(req.session){
-        console.log(req.session);
     if (req.session.login === true){
         Volunteers.find({username: req.session.user}, (error, data)=>{
-        console.log(data);
         res.render('./vol/assign.ejs', {
             data: data,
             event: req.params.event
@@ -150,17 +142,13 @@ router.post('/assign/:indexOf', (req, res) => {
     if(req.session){
     if (req.session.login === true){
     req.body.username = req.session.user;
-    console.log(req.body);
     //check for each request object that is 'on' and add key to name array
     const bodyKeys = Object.keys(req.body);
-    console.log(bodyKeys);
     let nameArray = [];
     for (key of bodyKeys){
-        console.log(key,req.body[key]);
         if (req.body[key] === 'on'){
             nameArray.push(key);
         }
-        console.log(nameArray)
     }
     updateObj = {volunteers: nameArray}
     //set name array as volunteer property of event

@@ -11,10 +11,8 @@ const Events = require('../models/events.js');
 /////////////////////
 router.get('/', (req, res) => {
     if(req.session){
-        console.log(req.session);
     if (req.session.login === true){
         Events.find({username: req.session.user}, (error, data)=>{
-        console.log(data);
         res.render('./events/index.ejs', {
             data: data,
         });
@@ -30,7 +28,6 @@ router.get('/', (req, res) => {
 //////////////////////////////
 router.get('/api/:user', (req, res) => {
         Events.find({username: req.params.user}, (error, data)=>{
-        console.log(data);
         res.send(data);
     });
 });
@@ -47,9 +44,7 @@ router.post('/new', (req, res) => {
     if(req.session){
     if (req.session.login === true){
     req.body.username = req.session.user;
-    console.log(req.body)
     Events.create(req.body, (error, created)=>{
-        console.log(created);
         res.redirect('/events/');
     });}
     else {res.redirect('/events/error')}}
@@ -101,7 +96,6 @@ router.get('/edit/:indexOf', (req, res)=>{
     if(req.session){
     if (req.session.login === true){
     Events.findById(req.params.indexOf, (err, foundData)=>{
-        console.log(foundData, err)
         res.render(
     		'./events/edit.ejs',
     		{
@@ -120,7 +114,6 @@ router.put('/edit/:indexOf', (req, res) => {
     if(req.session){
     if (req.session.login === true){
     req.body.username = req.session.user;
-    console.log(req.body)
     Events.findByIdAndUpdate(req.params.indexOf, req.body, {new:true}, (err, updatedModel)=>{
         res.redirect('/events/');
     });}
