@@ -13,7 +13,7 @@ const dbupdateobject = {
   useFindAndModify: false,
   useCreateIndex: true,
 };
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
 const session = require("express-session");
 const MongoStore = require("connect-mongo")(session);
 
